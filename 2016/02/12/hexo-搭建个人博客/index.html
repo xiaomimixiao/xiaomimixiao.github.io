@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hexo 搭建个人博客 | Hexo</title>
+  <title>hexo 搭建个人博客 | My Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="PHP 扩展mongon.mod.dll下载http://cn.php.NET/manual/en/mongo.installation.php#mongo.installation.windows然后php.ini添加 extension=php_mongo.dll最后phpinfo() 查找到
 表标PHP已经自带了mongo功能，你就可以操作下面的代码（但是你必须有安装MongoDB服务器）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo 搭建个人博客">
 <meta property="og:url" content="http://yoursite.com/2016/02/12/hexo-搭建个人博客/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="My Blog">
 <meta property="og:description" content="PHP 扩展mongon.mod.dll下载http://cn.php.NET/manual/en/mongo.installation.php#mongo.installation.windows然后php.ini添加 extension=php_mongo.dll最后phpinfo() 查找到
 表标PHP已经自带了mongo功能，你就可以操作下面的代码（但是你必须有安装MongoDB服务器）">
 <meta property="og:updated_time" content="2017-02-12T12:58:27.311Z">
@@ -38,7 +38,7 @@
       <div class="logo">
         <img src="/logo.png" alt="Profile Picture">
       </div>
-      <div id="title">Hexo</div>
+      <div id="title">My Blog</div>
       
        <ul class="my-socials">
   
@@ -62,7 +62,7 @@
       -->
     </nav>
     <nav id="title-nav" style="display:none">
-      <a href="/">Hexo</a>
+      <a href="/">My Blog</a>
       <img src="/logo.png" alt="Profile Picture">
       <!--
       <span id="title-nav-socials">
@@ -129,7 +129,6 @@
 <p>使用下面的代码创建一个数据库链接<br>复制代码 代码如下:<br>&lt;?php<br>$connection = new Mongo(mongodb://192.168.1.5:27017); //链接到 192.168.1.5:27017//27017端口是默认的。<br>$connection = new Mongo( “example.com” ); //链接到远程主机(默认端口)<br>$connection = new Mongo( “example.com:65432” ); //链接到远程主机的自定义的端口<br>print_r($connection-&gt;listDBs());//能打印出数据库数组，看看有几个数据库。</p>
 <p>?&gt;</p>
 <p>如图：</p>
-        <img src="/Blog/image/2.jpg">
 <p>上图说有一个数据库名字叫local,总大小1个字节，他是空的。看见ok表示运行成功。</p>
 <p>现在你可以使用$connection链接来操作数据库了</p>
 <p>选择数据库</p>
@@ -177,26 +176,35 @@
 <p>//重复显示结果<br>foreach ($cursor as $obj) {<br>    echo $obj[“title”] . “\n”;<br>}</p>
 <p>// 关闭链接<br>$m-&gt;close();<br>?&gt;</p>
 <p>输出结果为<br>复制代码 代码如下:<br>Calvin and Hobbes<br>XKCD</p>
+
+      
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2016/02/12/hexo-搭建个人博客/" data-id="ciz2oh4s70001tzp32sezpj02" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2016/02/12/hexo-搭建个人博客/" data-id="ciz2pi0u00003xdp30u1o5x1v" class="article-share-link">Share</a>
+      
 
+      
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/02/12/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/02/12/CentOS7安装mongodb/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Hello World
+          CentOS7安装mongodb
         
       </div>
     </a>
   
+  
+    <a href="/2016/02/12/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
 </nav>
 

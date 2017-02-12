@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>My Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="My Blog">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="My Blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="My Blog">
   
   
     <link rel="icon" href="/favicon.png">
@@ -31,7 +31,7 @@
       <div class="logo">
         <img src="/logo.png" alt="Profile Picture">
       </div>
-      <div id="title">Hexo</div>
+      <div id="title">My Blog</div>
       
        <ul class="my-socials">
   
@@ -55,7 +55,7 @@
       -->
     </nav>
     <nav id="title-nav" style="display:none">
-      <a href="/">Hexo</a>
+      <a href="/">My Blog</a>
       <img src="/logo.png" alt="Profile Picture">
       <!--
       <span id="title-nav-socials">
@@ -98,10 +98,10 @@
   
 
     
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-递归无限极分类" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/12/hello-world/" class="article-date">
-  <time datetime="2017-02-12T10:41:05.083Z" itemprop="datePublished">2017-02-12</time>
+    <a href="/2017/02/12/递归无限极分类/" class="article-date">
+  <time datetime="2017-02-12T13:27:42.000Z" itemprop="datePublished">2017-02-12</time>
 </a>
     
   </div>
@@ -112,7 +112,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/12/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/02/12/递归无限极分类/">递归无限极分类</a>
     </h1>
   
 
@@ -120,21 +120,259 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <pre><code>&lt;?php 
+        /*
+        *     无限极分类 类
+        */
+    header(&quot;Content-Type: text/html; charset=UTF-8&quot;);
+    Class Category {
+        //组合一维数组
+        Static Public function unlimitedForLevel ($cate, $html = &apos;--&apos;, $pid = 0, $level = 0) {
+            $arr = array();
+            foreach ($cate as $k =&gt; $v) {
+                if ($v[&apos;pid&apos;] == $pid) {
+                    $v[&apos;level&apos;] = $level + 1;
+                    $v[&apos;html&apos;]  = str_repeat($html, $level);
+                    $arr[] = $v;
+                    $arr = array_merge($arr, self::unlimitedForLevel($cate, $html, $v[&apos;id&apos;], $level + 1));
+                }
+            }
+            return $arr;
+        }
+        //组合多维数组
+        Static Public function unlimitedForLayer ($cate, $name = &apos;child&apos;, $pid = 0) {
+            $arr = array();
+            foreach ($cate as $v) {
+                if ($v[&apos;pid&apos;] == $pid) {
+                    $v[$name] = self::unlimitedForLayer($cate, $name, $v[&apos;id&apos;]);
+                    $arr[] = $v;
+                }
+            }
+            return $arr;
+        }
+        //传递一个子分类ID返回所有的父级分类  
+        Static Public function getParents ($cate, $id) {
+            $arr = array();
+            foreach ($cate as $v) {
+                if ($v[&apos;id&apos;] == $id) {
+                    $arr[] = $v;
+                    $arr = array_merge(self::getParents($cate, $v[&apos;pid&apos;]), $arr); 
+                }
+            }
+            return $arr;
+        }
+        //传递一个父级分类ID返回所有子分类ID
+        Static Public function getChildsId ($cate, $pid) {
+            $arr = array();
+            foreach ($cate as $v) {
+                if ($v[&apos;pid&apos;] == $pid) {
+                    $arr[] = $v[&apos;id&apos;];
+                    $arr = array_merge($arr, self::getChildsId($cate, $v[&apos;id&apos;]));
+                }
+            }
+            return $arr;
+        }
+        //传递一个父级分类ID返回所有子分类
+        Static Public function getChilds ($cate, $pid) {
+            $arr = array();
+            foreach ($cate as $v) {
+                if ($v[&apos;pid&apos;] == $pid) {
+                    $arr[] = $v;
+                    $arr = array_merge($arr, self::getChilds($cate, $v[&apos;id&apos;]));
+                }
+            }
+            return $arr;
+        }
+
+    }
+
+$cate = array(
+    0 =&gt; array(&apos;id&apos; =&gt; 1, &apos;pid&apos; =&gt; 0, &apos;name&apos; =&gt; &apos;江西省&apos;),
+    1 =&gt; array(&apos;id&apos; =&gt; 2, &apos;pid&apos; =&gt; 0, &apos;name&apos; =&gt; &apos;浙江省&apos;),
+    2 =&gt; array(&apos;id&apos; =&gt; 3, &apos;pid&apos; =&gt; 1, &apos;name&apos; =&gt; &apos;上饶市&apos;),
+    3 =&gt; array(&apos;id&apos; =&gt; 4, &apos;pid&apos; =&gt; 3, &apos;name&apos; =&gt; &apos;广丰县&apos;),
+    4 =&gt; array(&apos;id&apos; =&gt; 5, &apos;pid&apos; =&gt; 2, &apos;name&apos; =&gt; &apos;杭州市&apos;),
+    5 =&gt; array(&apos;id&apos; =&gt; 6, &apos;pid&apos; =&gt; 5, &apos;name&apos; =&gt; &apos;西湖&apos;),
+    6 =&gt; array(&apos;id&apos; =&gt; 7, &apos;pid&apos; =&gt; 6, &apos;name&apos; =&gt; &apos;断桥&apos;),
+);
+//print_r(Category::unlimitedForLevel($cate));
+print_r(Category::unlimitedForLayer($cate));
+//print_r(Category::getParents($cate,7));
+//print_r(Category::getChildsId($cate,2));
+//print_r(Category::getChilds($cate,2));
+// PHP交流群 278528223
+ ?&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2017/02/12/递归无限极分类/" data-id="ciz2pi0uc0005xdp38twh632j" class="article-share-link">Share</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+    
+  
+
+    
+    <article id="post-PHP实现各种经典算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/12/PHP实现各种经典算法/" class="article-date">
+  <time datetime="2017-02-12T13:26:26.000Z" itemprop="datePublished">2017-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/12/PHP实现各种经典算法/">PHP实现各种经典算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&lt;?<br>//——————–<br>// 基本数据结构算法<br>//——————–<br>//二分查找（数组里查找某个元素）<br>function bin_sch($array,  $low, $high, $k){<br>    if ( $low &lt;= $high){<br>        $mid =  intval(($low+$high)/2 );<br>        if ($array[$mid] ==  $k){<br>            return $mid;<br>        }elseif ( $k &lt; $array[$mid]){<br>            return  bin_sch($array, $low,  $mid-1, $k);<br>        }else{<br>            return  bin_sch($array, $mid+ 1, $high, $k);<br>        }<br>    }<br>    return -1;<br>}<br>//顺序查找（数组里查找某个元素）<br>function  seq_sch($array, $n,  $k){<br>    $array[$n] =  $k;<br>    for($i=0;  $i&lt;$n; $i++){<br>        if( $array[$i]==$k){<br>            break;<br>        }<br>    }<br>    if ($i&lt;$n){<br>        return  $i;<br>    }else{<br>        return -1;<br>    }<br>}<br>//线性表的删除（数组中实现）<br>function delete_array_element($array , $i)<br>{<br>        $len =  count($array);<br>        for ($j= $i; $j&lt;$len; $j ++){<br>                $array[$j] = $array [$j+1];<br>        }<br>        array_pop ($array);<br>        return $array ;<br>}<br>//冒泡排序（数组排序）<br>function bubble_sort( $array)<br>{<br>        $count = count( $array);<br>        if ($count &lt;= 0 ) return false;<br>        for($i=0 ; $i&lt;$count; $i ++){<br>                for($j=$count-1 ; $j&gt;$i; $j–){<br>                        if ($array[$j] &lt; $array [$j-1]){<br>                                 $tmp = $array[$j];<br>                                 $array[$j] = $array[ $j-1];<br>                                $array [$j-1] = $tmp;<br>                        }<br>                }<br>        }<br>        return $array;<br>}<br>//快速排序（数组排序）<br>function quick_sort($array ) {<br>        if (count($array) &lt;= 1) return  $array;<br>        $key = $array [0];<br>        $left_arr  = array();<br>        $right_arr = array();<br>        for ($i= 1; $i&lt;count($array ); $i++){<br>                if ($array[ $i] &lt;= $key)<br>                        $left_arr [] = $array[$i];<br>                else<br>                         $right_arr[] = $array[$i ];<br>        }<br>        $left_arr = quick_sort($left_arr );<br>        $right_arr = quick_sort( $right_arr);<br>        return array_merge($left_arr , array($key), $right_arr);<br>} </p>
+<p>//————————<br>// PHP内置字符串函数实现<br>//————————<br>//字符串长度<br>function strlen ($str)<br>{<br>        if ($str == ‘’ ) return 0;<br>        $count =  0;<br>        while (1){<br>                if ( $str[$count] != NULL){<br>                         $count++;<br>                        continue;<br>                }else{<br>                        break;<br>                }<br>        }<br>        return $count;<br>}<br>//截取子串<br>function substr($str, $start,  $length=NULL)<br>{<br>        if ($str== ‘’ || $start&gt;strlen($str )) return;<br>        if (($length!=NULL) &amp;&amp; ( $start&gt;0) &amp;&amp; ($length&gt; strlen($str)-$start)) return;<br>        if (( $length!=NULL) &amp;&amp; ($start&lt; 0) &amp;&amp; ($length&gt;strlen($str )+$start)) return;<br>        if ($length ==  NULL) $length = (strlen($str ) - $start); </p>
+<pre><code>if ($start &lt;  0){ 
+        for ($i=(strlen( $str)+$start); $i&lt;(strlen ($str)+$start+$length ); $i++) { 
+                $substr .=  $str[$i]; 
+        } 
+} 
+if ($length  &gt; 0){ 
+        for ($i= $start; $i&lt;($start+$length ); $i++) { 
+                $substr  .= $str[$i]; 
+        } 
+} 
+if ( $length &lt; 0){ 
+        for ($i =$start; $i&lt;(strlen( $str)+$length); $i++) { 
+                $substr .= $str[$i ]; 
+        } 
+} 
+return $substr; 
+</code></pre><p>}<br>//字符串翻转<br>function strrev($str)<br>{<br>        if ($str == ‘’) return 0 ;<br>        for ($i=(strlen($str)- 1); $i&gt;=0; $i –){<br>                $rev_str .= $str[$i ];<br>        }<br>        return $rev_str;<br>} </p>
+<p>//字符串比较<br>function strcmp($s1,  $s2)<br>{<br>        if (strlen($s1) &lt;  strlen($s2)) return -1 ;<br>        if (strlen($s1) &gt; strlen( $s2)) return 1;<br>        for ($i =0; $i&lt;strlen($s1 ); $i++){<br>                if ($s1[ $i] == $s2[$i]){<br>                        continue;<br>                }else{<br>                        return false;<br>                }<br>        }<br>        return  0;<br>} </p>
+<p>//查找字符串<br>function  strstr($str, $substr)<br>{<br>         $m = strlen($str);<br>        $n = strlen($substr );<br>        if ($m &lt; $n) return false ;<br>        for ($i=0; $i &lt;=($m-$n+1); $i ++){<br>                $sub = substr( $str, $i, $n);<br>                if ( strcmp($sub, $substr) ==  0)  return $i;<br>        }<br>        return false ;<br>}<br>//字符串替换<br>function str_replace($substr , $newsubstr, $str)<br>{<br>         $m = strlen($str);<br>        $n = strlen($substr );<br>        $x = strlen($newsubstr );<br>        if (strchr($str, $substr ) == false) return false;<br>        for ( $i=0; $i&lt;=($m- $n+1); $i++){<br>                 $i = strchr($str,  $substr);<br>                $str = str_delete ($str, $i, $n);<br>                $str = str_insert($str,  $i, $newstr);<br>        }<br>        return $str ;<br>} </p>
+<p>//——————–<br>// 自实现字符串处理函数<br>//——————–<br>//插入一段字符串<br>function str_insert($str, $i , $substr)<br>{<br>        for($j=0 ; $j&lt;$i; $j ++){<br>                $startstr .= $str[$j ];<br>        }<br>        for ($j=$i; $j <strlen($str); $j="" ++){="" $laststr="" .="$str[$j" ];="" }="" $str="($startstr" $substr="" $laststr);="" return="" ;="" 删除一段字符串="" function="" str_delete($str="" ,="" $i,="" $j)="" {="" for="" (="" $c="0;" $c<$i;="" $c++){="" $startstr="" [$c];="" ($c="(" $i+$j);="" $c<strlen="" ($str);="" );="" $str;="" 复制字符串="" strcpy($s1,="" $s2="" )="" if="" (strlen($s1)="=NULL" ||="" !isset(="" $s2))="" return;="" ($i="0" $i<strlen($s1);="" $i++){="" $s2[]="$s1" [$i];="" $s2;="" 连接字符串="" strcat($s1="" $s2)="" (!isset($s1)="" $newstr="$s1" for($i="0;" $i="" <count($s);="" $newsstr;="" 简单编码函数（与php_decode函数对应）="" php_encode($str)="" &&="" strlen(="" $str)="">128) return false;<br>        for( $i=0; $i<strlen ($str);="" $i++){="" $c="ord($str[$i" ]);="" if="" ($c="">31 &amp;&amp; $c <107) $c="" +="20" ;="" if="" ($c="">106 &amp;&amp; $c <127) $c="" -="75" ;="" $word="chr($c" );="" $s="" .="$word;" }="" return="" $s;="" 简单解码函数（与php_encode函数对应）="" function="" php_decode($str)="" {="" if="" (="" $str="=''" &&="" strlen($str="" )="">128) return false;<br>        for( $i=0; $i<strlen ($str);="" $i++){="" $c="ord($word);" if="" (="">106 &amp;&amp; $c<127 )="" $c="$c-20;" if="" ($c="">31 &amp;&amp; $c&lt; 107) $c = $c+75 ;<br>                $word = chr( $c);<br>                $s .= $word ;<br>        }<br>        return $s;<br>}<br>//简单加密函数（与php_decrypt函数对应）<br>function php_encrypt($str)<br>{<br>         $encrypt_key = ‘abcdefghijklmnopqrstuvwxyz1234567890’;<br>         $decrypt_key = ‘ngzqtcobmuhelkpdawxfyivrsj2468021359’;<br>        if ( strlen($str) == 0) return  false;<br>        for ($i=0;  $i<strlen($str); $i="" ++){="" for="" ($j="0;" $j="" <strlen($encrypt_key);="" if="" ($str[$i]="=" $encrypt_key="" [$j]){="" $enstr="" .="$decrypt_key[$j];" break;="" }="" return="" $enstr;="" 简单解密函数（与php_encrypt函数对应）="" function="" php_decrypt($str)="" {="" ;="" $decrypt_key="ngzqtcobmuhelkpdawxfyivrsj2468021359" (="" strlen($str)="=" 0)="" false;="" ($i="0;" $i<strlen($str);="" <strlen($decrypt_key);="" ?=""> </strlen($str);></127></strlen></127)></107)></strlen></strlen($str);></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/02/12/hello-world/" data-id="ciz2oh4rz0000tzp3nnefjkao" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2017/02/12/PHP实现各种经典算法/" data-id="ciz2pi0tr0001xdp31ondpp96" class="article-share-link">Share</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+    
+  
+
+    
+    <article id="post-php-敏感词替换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/12/php-敏感词替换/" class="article-date">
+  <time datetime="2017-02-12T13:25:21.000Z" itemprop="datePublished">2017-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/12/php-敏感词替换/">php 敏感词替换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> &lt;?php<br>$badword = array(<br>    ‘魔客吧’,’www.moke8.ccom’<br>);<br>$badword1 = array_combine($badword,array_fill(0,count($badword),’<em>‘));<br>$bb = ‘我的网站的名字叫做魔客吧，我的网站的网址是www.moke8.com’;<br>$str = strtr($bb, $badword1);<br>echo $str;<br>?&gt;<br>输出：<br>我的网站的名字叫做</em>，我的网站的网址是* </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2017/02/12/php-敏感词替换/" data-id="ciz2pi0u20004xdp3j0qk09zy" class="article-share-link">Share</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+    
+  
+
+    
+    <article id="post-CentOS7安装mongodb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/12/CentOS7安装mongodb/" class="article-date">
+  <time datetime="2017-02-12T13:23:14.000Z" itemprop="datePublished">2017-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/12/CentOS7安装mongodb/">CentOS7安装mongodb</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、下载<br>wget <a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.8.tgz" target="_blank" rel="external">https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.8.tgz</a></p>
+<p>2、解压<br>tar zxvf MongoDB-Linux-x86_64-rhel70-3.2.8.tgz<br>mv mongodb-linux-x86_64-rhel70-3.2.8 /usr/local/<br>mv mongodb-linux-x86_64-rhel70-3.2.8 mongodb<br>cd mongodb/</p>
+<p>mkdir db<br>mkdir logs<br>cd bin/<br>3、编辑配置文件：<br>vim mongodb.conf<br>输入以下内容：<br>dbpath=/usr/local/mongodb/db<br>logpath=/usr/local/mongodb/logs/mongodb.log<br>bind_ip=0.0.0.0<br>port=27017<br>fork=true<br>nohttpinterface=true</p>
+<p>4、创建新的账号：<br>groupadd mongodb<br>useradd mongodb -g mongodb<br>cd ../../<br>chown -R mongodb:mongodb mongodb</p>
+<p>5、启动：<br>/usr/local/mongodb/bin/mongod -f /usr/local/mongodb/bin/mongodb.conf</p>
+<p>6、设置开机自动启动mongodb<br>vi /etc/rc.d/rc.local<br>/usr/local/mongodb/bin/mongod –config /usr/local/mongodb/bin/mongodb.conf</p>
+<p>进入mongodb的shell模式：<br>/usr/local/mongodb/bin/mongo<br>查看数据库列表：<br>show dbs<br>查看当前db版本：<br>db.version();</p>
+<p>7、增加管理员权限：</p>
+<p>userAdminAnyDatabase 这个角色拥有分配角色和用户的权限，但没有查写的缺陷<br>root 这是超级管理员<br>readWrite 有读写权限<br>read 有读权限</p>
+<p>进入shell模式：<br>/usr/local/mongodb/bin/mongo</p>
+<p>use admin //切换到admin数据库</p>
+<p>db.createUser(<br>{<br>user: “root”,<br>pwd: “testMongoDB2016”,<br>roles:[{role:”root”, db:”admin”}]<br>}<br>);</p>
+<p>db.createUser(<br>{<br>user: “mongoRoot”,<br>pwd: “testMongoDB2016”,<br>roles:[{role:”userAdminAnyDatabase”, db:”admin”}]<br>}<br>);<br>验证一下，在哪里注册用户的要去哪个db里认证：<br>db.auth(“mongoRoot”, “testMongoDB2016”)<br>此后可以用这个mongoRoot账号去创建某一数据库管理账号：<br>db.createUser({user:”hhq163”,pwd:”test123456”,roles:[{“role”:”readWrite”,”db”:”admin”}]})</p>
+<p>但发现此时增加的账号不能在客户端登录，原因是mongodb版本错了：<br>先退出 mongod 服务</p>
+<p>use admin<br>db.auth(“root”, “testMongoDB2016”)<br>db.shutdownServer()<br>再在无认证情况下打开 mongod<br>use admin<br>db.dropUser(“hhq163”)<br>db.system.version.update({ “_id”:”authSchema”},{$set:{“currentVersion”:3}})<br>db.createUser({user:”hhq163”,pwd:”test123456”,roles:[{“role”:”readWrite”,”db”:”admin”}]})<br>再以认证的形式启动mongodb</p>
+<p>如果需要创建某一个新DB的账号：<br>需要在shell下执行：<br>use TestDB<br>db.createUser({user:”hhq163”,pwd:”test123456”,roles:[{“role”:”readWrite”,”db”:”TestDB”}]})</p>
+<p>vim /usr/local/mongodb/bin/mongodb.conf<br>在文件末尾增加以下这一行：<br>auth=true</p>
+<p>8、关闭数据库服务器：<br>use admin<br>db.shutdownServer()</p>
+<p>如果开户安全认证，则要先认证：<br>use admin<br>db.auth(“root”, “testMongoDB2016”)<br>db.shutdownServer()</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2017/02/12/CentOS7安装mongodb/" data-id="ciz2pi0tj0000xdp3bcz8if8r" class="article-share-link">Share</a>
       
 
       
@@ -228,7 +466,57 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2016/02/12/hexo-搭建个人博客/" data-id="ciz2oh4s70001tzp32sezpj02" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2016/02/12/hexo-搭建个人博客/" data-id="ciz2pi0u00003xdp30u1o5x1v" class="article-share-link">Share</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+    
+  
+
+    
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/12/hello-world/" class="article-date">
+  <time datetime="2016-02-12T10:30:43.000Z" itemprop="datePublished">2016-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/12/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/02/12/hello-world/" data-id="ciz2pi0tv0002xdp3zebotoly" class="article-share-link">Share</a>
       
 
       

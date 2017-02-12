@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP实现各种经典算法 | My Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;lt;?//——————–// 基本数据结构算法//——————–//二分查找（数组里查找某个元素）function bin_sch($array,  $low, $high, $k){    if ( $low &amp;lt;= $high){        $mid =  intval(($low+$high)/2 );        if ($array[$mid] ==  $k){">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP实现各种经典算法">
+<meta property="og:url" content="http://yoursite.com/2017/02/12/PHP实现各种经典算法/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="&amp;lt;?//——————–// 基本数据结构算法//——————–//二分查找（数组里查找某个元素）function bin_sch($array,  $low, $high, $k){    if ( $low &amp;lt;= $high){        $mid =  intval(($low+$high)/2 );        if ($array[$mid] ==  $k){">
+<meta property="og:updated_time" content="2017-02-12T13:27:02.581Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP实现各种经典算法">
+<meta name="twitter:description" content="&amp;lt;?//——————–// 基本数据结构算法//——————–//二分查找（数组里查找某个元素）function bin_sch($array,  $low, $high, $k){    if ( $low &amp;lt;= $high){        $mid =  intval(($low+$high)/2 );        if ($array[$mid] ==  $k){">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/scrollUp/image.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div class="logo">
+        <img src="/logo.png" alt="Profile Picture">
+      </div>
+      <div id="title">My Blog</div>
+      
+       <ul class="my-socials">
+  
+ 
+</ul>
+    </div>
+  </div>
+  <div id="header-inner" class="">
+    <nav id="main-nav">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <!--
+        
+          
+            <a class="main-nav-link" href="/">首页</a>
+          
+            <a class="main-nav-link" href="/categories/life">生活</a>
+          
+            <a class="main-nav-link" href="/archives">归档</a>
+          
+        
+      -->
+    </nav>
+    <nav id="title-nav" style="display:none">
+      <a href="/">My Blog</a>
+      <img src="/logo.png" alt="Profile Picture">
+      <!--
+      <span id="title-nav-socials">
+        
+       
+     </span>
+      -->
+    </nav>
+    <nav id="sub-nav">
+      
+      <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+    </nav>
+    <div id="search-form-wrap">
+      <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+        <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+        <input type="submit" value="" class="search-form-submit">
+        <input name=tn type=hidden value="bds">
+        <input name=cl type=hidden value="3">
+        <input name=ct type=hidden value="2097152">
+        <input type="hidden" name="si" value="yoursite.com">
+      </form>
+    </div>
+  </div>
+  <div class="site-nav" style="display: none;">
+    <ul>
+      
+      
+        <li><a href="/">首页</a></li>
+      
+        <li><a href="/categories/life">生活</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+      
+    </ul>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PHP实现各种经典算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/12/PHP实现各种经典算法/" class="article-date">
+  <time datetime="2017-02-12T13:26:26.000Z" itemprop="datePublished">2017-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP实现各种经典算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&lt;?<br>//——————–<br>// 基本数据结构算法<br>//——————–<br>//二分查找（数组里查找某个元素）<br>function bin_sch($array,  $low, $high, $k){<br>    if ( $low &lt;= $high){<br>        $mid =  intval(($low+$high)/2 );<br>        if ($array[$mid] ==  $k){<br>            return $mid;<br>        }elseif ( $k &lt; $array[$mid]){<br>            return  bin_sch($array, $low,  $mid-1, $k);<br>        }else{<br>            return  bin_sch($array, $mid+ 1, $high, $k);<br>        }<br>    }<br>    return -1;<br>}<br>//顺序查找（数组里查找某个元素）<br>function  seq_sch($array, $n,  $k){<br>    $array[$n] =  $k;<br>    for($i=0;  $i&lt;$n; $i++){<br>        if( $array[$i]==$k){<br>            break;<br>        }<br>    }<br>    if ($i&lt;$n){<br>        return  $i;<br>    }else{<br>        return -1;<br>    }<br>}<br>//线性表的删除（数组中实现）<br>function delete_array_element($array , $i)<br>{<br>        $len =  count($array);<br>        for ($j= $i; $j&lt;$len; $j ++){<br>                $array[$j] = $array [$j+1];<br>        }<br>        array_pop ($array);<br>        return $array ;<br>}<br>//冒泡排序（数组排序）<br>function bubble_sort( $array)<br>{<br>        $count = count( $array);<br>        if ($count &lt;= 0 ) return false;<br>        for($i=0 ; $i&lt;$count; $i ++){<br>                for($j=$count-1 ; $j&gt;$i; $j–){<br>                        if ($array[$j] &lt; $array [$j-1]){<br>                                 $tmp = $array[$j];<br>                                 $array[$j] = $array[ $j-1];<br>                                $array [$j-1] = $tmp;<br>                        }<br>                }<br>        }<br>        return $array;<br>}<br>//快速排序（数组排序）<br>function quick_sort($array ) {<br>        if (count($array) &lt;= 1) return  $array;<br>        $key = $array [0];<br>        $left_arr  = array();<br>        $right_arr = array();<br>        for ($i= 1; $i&lt;count($array ); $i++){<br>                if ($array[ $i] &lt;= $key)<br>                        $left_arr [] = $array[$i];<br>                else<br>                         $right_arr[] = $array[$i ];<br>        }<br>        $left_arr = quick_sort($left_arr );<br>        $right_arr = quick_sort( $right_arr);<br>        return array_merge($left_arr , array($key), $right_arr);<br>} </p>
+<p>//————————<br>// PHP内置字符串函数实现<br>//————————<br>//字符串长度<br>function strlen ($str)<br>{<br>        if ($str == ‘’ ) return 0;<br>        $count =  0;<br>        while (1){<br>                if ( $str[$count] != NULL){<br>                         $count++;<br>                        continue;<br>                }else{<br>                        break;<br>                }<br>        }<br>        return $count;<br>}<br>//截取子串<br>function substr($str, $start,  $length=NULL)<br>{<br>        if ($str== ‘’ || $start&gt;strlen($str )) return;<br>        if (($length!=NULL) &amp;&amp; ( $start&gt;0) &amp;&amp; ($length&gt; strlen($str)-$start)) return;<br>        if (( $length!=NULL) &amp;&amp; ($start&lt; 0) &amp;&amp; ($length&gt;strlen($str )+$start)) return;<br>        if ($length ==  NULL) $length = (strlen($str ) - $start); </p>
+<pre><code>if ($start &lt;  0){ 
+        for ($i=(strlen( $str)+$start); $i&lt;(strlen ($str)+$start+$length ); $i++) { 
+                $substr .=  $str[$i]; 
+        } 
+} 
+if ($length  &gt; 0){ 
+        for ($i= $start; $i&lt;($start+$length ); $i++) { 
+                $substr  .= $str[$i]; 
+        } 
+} 
+if ( $length &lt; 0){ 
+        for ($i =$start; $i&lt;(strlen( $str)+$length); $i++) { 
+                $substr .= $str[$i ]; 
+        } 
+} 
+return $substr; 
+</code></pre><p>}<br>//字符串翻转<br>function strrev($str)<br>{<br>        if ($str == ‘’) return 0 ;<br>        for ($i=(strlen($str)- 1); $i&gt;=0; $i –){<br>                $rev_str .= $str[$i ];<br>        }<br>        return $rev_str;<br>} </p>
+<p>//字符串比较<br>function strcmp($s1,  $s2)<br>{<br>        if (strlen($s1) &lt;  strlen($s2)) return -1 ;<br>        if (strlen($s1) &gt; strlen( $s2)) return 1;<br>        for ($i =0; $i&lt;strlen($s1 ); $i++){<br>                if ($s1[ $i] == $s2[$i]){<br>                        continue;<br>                }else{<br>                        return false;<br>                }<br>        }<br>        return  0;<br>} </p>
+<p>//查找字符串<br>function  strstr($str, $substr)<br>{<br>         $m = strlen($str);<br>        $n = strlen($substr );<br>        if ($m &lt; $n) return false ;<br>        for ($i=0; $i &lt;=($m-$n+1); $i ++){<br>                $sub = substr( $str, $i, $n);<br>                if ( strcmp($sub, $substr) ==  0)  return $i;<br>        }<br>        return false ;<br>}<br>//字符串替换<br>function str_replace($substr , $newsubstr, $str)<br>{<br>         $m = strlen($str);<br>        $n = strlen($substr );<br>        $x = strlen($newsubstr );<br>        if (strchr($str, $substr ) == false) return false;<br>        for ( $i=0; $i&lt;=($m- $n+1); $i++){<br>                 $i = strchr($str,  $substr);<br>                $str = str_delete ($str, $i, $n);<br>                $str = str_insert($str,  $i, $newstr);<br>        }<br>        return $str ;<br>} </p>
+<p>//——————–<br>// 自实现字符串处理函数<br>//——————–<br>//插入一段字符串<br>function str_insert($str, $i , $substr)<br>{<br>        for($j=0 ; $j&lt;$i; $j ++){<br>                $startstr .= $str[$j ];<br>        }<br>        for ($j=$i; $j <strlen($str); $j="" ++){="" $laststr="" .="$str[$j" ];="" }="" $str="($startstr" $substr="" $laststr);="" return="" ;="" 删除一段字符串="" function="" str_delete($str="" ,="" $i,="" $j)="" {="" for="" (="" $c="0;" $c<$i;="" $c++){="" $startstr="" [$c];="" ($c="(" $i+$j);="" $c<strlen="" ($str);="" );="" $str;="" 复制字符串="" strcpy($s1,="" $s2="" )="" if="" (strlen($s1)="=NULL" ||="" !isset(="" $s2))="" return;="" ($i="0" $i<strlen($s1);="" $i++){="" $s2[]="$s1" [$i];="" $s2;="" 连接字符串="" strcat($s1="" $s2)="" (!isset($s1)="" $newstr="$s1" for($i="0;" $i="" <count($s);="" $newsstr;="" 简单编码函数（与php_decode函数对应）="" php_encode($str)="" &&="" strlen(="" $str)="">128) return false;<br>        for( $i=0; $i<strlen ($str);="" $i++){="" $c="ord($str[$i" ]);="" if="" ($c="">31 &amp;&amp; $c <107) $c="" +="20" ;="" if="" ($c="">106 &amp;&amp; $c <127) $c="" -="75" ;="" $word="chr($c" );="" $s="" .="$word;" }="" return="" $s;="" 简单解码函数（与php_encode函数对应）="" function="" php_decode($str)="" {="" if="" (="" $str="=''" &&="" strlen($str="" )="">128) return false;<br>        for( $i=0; $i<strlen ($str);="" $i++){="" $c="ord($word);" if="" (="">106 &amp;&amp; $c<127 )="" $c="$c-20;" if="" ($c="">31 &amp;&amp; $c&lt; 107) $c = $c+75 ;<br>                $word = chr( $c);<br>                $s .= $word ;<br>        }<br>        return $s;<br>}<br>//简单加密函数（与php_decrypt函数对应）<br>function php_encrypt($str)<br>{<br>         $encrypt_key = ‘abcdefghijklmnopqrstuvwxyz1234567890’;<br>         $decrypt_key = ‘ngzqtcobmuhelkpdawxfyivrsj2468021359’;<br>        if ( strlen($str) == 0) return  false;<br>        for ($i=0;  $i<strlen($str); $i="" ++){="" for="" ($j="0;" $j="" <strlen($encrypt_key);="" if="" ($str[$i]="=" $encrypt_key="" [$j]){="" $enstr="" .="$decrypt_key[$j];" break;="" }="" return="" $enstr;="" 简单解密函数（与php_encrypt函数对应）="" function="" php_decrypt($str)="" {="" ;="" $decrypt_key="ngzqtcobmuhelkpdawxfyivrsj2468021359" (="" strlen($str)="=" 0)="" false;="" ($i="0;" $i<strlen($str);="" <strlen($decrypt_key);="" ?=""> </strlen($str);></127></strlen></127)></107)></strlen></strlen($str);></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2017/02/12/PHP实现各种经典算法/" data-id="ciz2pi0tr0001xdp31ondpp96" class="article-share-link">Share</a>
+      
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/12/递归无限极分类/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          递归无限极分类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/12/php-敏感词替换/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">php 敏感词替换</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Theme <a href="https://github.com/henryhuang/oishi" target="_blank">Oishi</a>, Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <!--
+      <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/categories/life" class="mobile-nav-link">生活</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    -->
+    
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/jquery.transform.js"></script>
+<script src="/js/menu.js"></script>
+
+<script src="/js/script.js"></script>
+<script src="/js/scrollUp.js"></script>
+
+  </div>
+</body>
+</html>
